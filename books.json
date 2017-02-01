@@ -1,0 +1,18 @@
+{"bk" :
+ {
+  "book1" :
+    {
+     "author" : "Melville, Herman ",
+     "title" : "Moby Dick",
+     "subject" : "whaling",
+     "themes" : "cosmos, megalomania"
+    },
+  "book2" :
+    {
+     "author" : "Kafka, Franz ",
+     "title" : "Metaphorphosis",
+     "subject" : "Absuudity",
+     "themes" : "chaos, disconnect"
+    }
+ }
+}

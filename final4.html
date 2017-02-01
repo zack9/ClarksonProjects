@@ -1,0 +1,127 @@
+
+<!DOCTYPE HTML>
+
+<html lang-en>
+<head>
+<meta charset=utf-8>
+<title> Comm441:  </title>
+<link rel=stylesheet type="text/css" href="js.css">
+
+<style> 
+.red { margin-top:10px; 
+height:160px; width:385px;
+ border: 6px solid #ff0000; }
+.green { margin-top:10px; 
+height:160px; width:385px;
+padding:6px; border: 6px solid #00ff00;}
+    
+h1{display:none; color: #5f9ea0; font-size: 37px; }
+
+#right_col{position:absolute; top:0px; 
+left:490px; width:400px; 
+padding:6px; border: /* 2px solid #880000;*/
+}
+
+.drop_here {margin-top:10px; 
+height:160px; width:385px;
+padding:6px; 
+border: 2px solid #0033ee;
+}
+.dragme {margin-left:12px;
+ z-index: 5;}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+<script>
+    
+$(document).ready(function(){
+    
+    var img;
+$(".dragme").draggable();
+    var counter = 0;
+    
+    $(".drop_here").droppable({
+         drop: function( event, ui ) {
+         var dropped,target,color;
+    target= $(this);
+     dropped = ui.draggable;
+             
+     target.droppable({disabled: true})
+
+     dropped.remove();
+
+   if (target.attr('id')=="af_t"){
+      if( dropped.attr('id')=="af"){
+          color = "green"
+          counter +=1;
+      }  
+      else {color="red";}
+   }
+   if (target.attr('id')=="amer_t"){
+     if(dropped.attr('id')=="amer") {
+        color="green";
+        counter +=1;
+     }  
+     else {color="red";}
+   }
+   if (target.attr('id')=="eu_t"){
+      if (dropped.attr('id')=="eu")  
+           {color="green";
+           counter +=1;
+           }  
+   else {color="red";}
+   }
+    target.removeClass('drop_here');
+   target.addClass(color);
+    if(counter == 3) {
+        $('h1').show();
+    }
+
+
+  } 
+ });   
+});     
+
+</script>
+
+</head>
+<body>
+
+<br>
+<img class="dragme" id="af" src="pics/swallow_african-w140.jpg" /> <br>
+<img class="dragme" id="amer" src="pics/swallow_american-w140.jpg" /> <br>
+<img class="dragme" id="eu" src="pics/swallow_european-w140.jpg" />
+<br>
+
+
+
+
+<br>
+
+
+<div id=right_col> 
+<br>
+
+
+<div class="drop_here" id="amer_t"> American Swallow<br> </div>
+
+<div class="drop_here" id="eu_t">  European Swallow<br>  </div>
+
+<div class="drop_here" id="af_t"> African Swallow<br> </div>
+    <div id = "new"> </div>
+
+ <h1>CONGRATULATIONS<br>You are the WINNER! </h1> 
+
+
+</div>
+ <br> <br><br> <br>
+See <a href="http://api.jqueryui.com/draggable/" target="ui"> http://api.jqueryui.com/draggable/</a> <br> <br>
+
+and
+
+<a href="http://api.jqueryui.com/droppable/" target="ui"> http://api.jqueryui.com/droppable/  </a>
+</body>
+</html>
+

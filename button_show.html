@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+img{
+    margin-left:40px;
+    width: 300px;
+    height: 400px;
+}
+
+.rect1{
+    margin-left:-4px; 
+    height:10px;
+    padding: 5px 9px 3px 9px; 
+    margin-bottom: 8px; 
+    border-radius: 20px; 
+    -webkit-border-radius:3px; 
+    z-index:5;
+    background-color: black;
+    color:white;
+    }
+    
+ #button div { margin: 5px;}
+
+#button{ 
+    margin-left:100px; 
+    margin-top:40px;}
+
+    #button div {
+  display:inline;
+}
+    #button:hover { cursor: pointer;
+    }
+
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
+<script>
+$(document).ready(function(){
+  var currentButton;
+  $(".rect1").hover(
+    function(){
+     currentButton = $(this).text();
+     $(this).css(
+         {"background-color": "#7575bc",
+           color: "yellow"
+     });
+    },    
+
+   function(){ 
+    $(this).css(
+        {"background-color": "black",
+          color: "white"
+        });
+  })     
+
+
+  .click(function(){
+     if (currentButton=="Shoe 1"){
+ $('#apic').attr('src',"pics/shoes/boot2.jpg"); 
+     }
+     if (currentButton=="Shoe 2"){
+ $('#apic').attr('src',"pics/shoes/nike1.jpg");
+    }
+      if (currentButton=="Shoe 3"){
+ $('#apic').attr('src',"pics/shoes/nike2.jpg");
+    }
+     if (currentButton=="Shoe 4"){
+ $('#apic').attr('src',"pics/shoes/plim2.jpg");
+    }
+  });
+  
+ 
+});
+
+</script>
+</head><body>
+ 
+<div id="button">
+<div class="rect1 blue1">Shoe 1</div>
+<div class="rect1 blue1">Shoe 2</div>
+<div class="rect1 blue1">Shoe 3</div>
+<div class="rect1 blue1">Shoe 4</div>
+
+<br/><br/><br/><br/>
+<img src="pics/shoes/plim2.jpg" id="apic">
+</div>
+</body>
+</html>

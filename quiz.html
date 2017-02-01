@@ -1,0 +1,16 @@
+ <!DOCTYPE HTML>
+ <html><head>
+ <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+ <script type="text/javascript">
+ $(document).ready(function(){
+      var thumbFile = $("img1").attr('src');
+      var  thumbExt= /-c.*(\.\w{3,4}$)/;
+      var bpic= thumbFile.replace(thumbExt,'-t$1');
+      alert (bpic);
+ });
+
+ </script>
+ </head><body>
+ <div class="thumb"> <img id="img1" src="mypic-c.jpg" /> </div>
+ <img src="yourpic.jpg" id="apic">
+ </body></html> 

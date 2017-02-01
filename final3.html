@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE HTML>
+<html><head>
+<style>
+    
+    body {
+        background-color: aqua
+    }
+    
+    .rect {
+        width: 300px;
+        height 200px;
+        padding: 10px;
+        left: 20px; 
+        position: relative;
+        text-align: center;
+    }
+    
+    #pics img {
+        
+        width: 150px;
+        height: 150px;
+    }
+    
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script  src="jqcode/jquery.easing.1.3.js"> </script>
+
+<script>
+$(document).ready(function(){
+
+$.fn.style1 = function() {
+    this
+    .animate({left: "+=600px"}, "slow")
+    .css({height: "+=20px"}, "slow")
+    .fadeOut(3000)
+    .fadeIn(3000);
+    var classText = $(this).children()
+    classText.html("Fly away!!!");
+    var classPic = this.find("img")
+    classPic.attr('src', 'pics/flight.jpg')
+   classPic.css({ borderRadius: '80%'})
+  }
+
+$.fn.style2 = function() {
+    this 
+    .hide()
+    .fadeIn(1500);
+    var classText = $(this).children()
+    classText.html("Meerkat!");
+    var classPic = this.find("img");
+    classPic.attr('src', 'pics/meerkat.jpg');
+    classPic.css({height: '110px', width: "120px", borderRadius: '50%', paddingBottom: '40px'})
+    classPic.animate({left: '+=10px'});
+
+  }
+
+$.fn.style3 = function() {
+    this
+    .hide()
+    .fadeIn(1000)
+    .css({backgroundColor: 'black',
+         color: 'white'})
+
+  }
+
+  $('#B1').click(function(){ 
+    $('.rect').style1();
+  }); 
+    $('#B2').click(function(){ 
+    $('#pic1, #pic2').style2();
+  });
+    $('#B3').click(function(){ 
+    $('body').style3();
+  });
+});
+</script>
+</head>
+<body>
+
+
+<input type="button" id="B1" value="Change1">
+<input type="button" id="B2" value="Change2">
+<input type="button" id="B3" value="Change Body">
+    
+  <div id = "pics">
+<div class="rect" id="pic1"> <img src = "pics/lake.jpg"> <p> Lake </p> </div>
+<div class="rect"  id="pic2"> <img src = "pics/koala.jpg"><p> Koala </p>  </div>
+<div class="rect"  id="pic3"> <img src = "pics/australia/bris1.jpg"> <p>Brisbane</p> </div>
+
+    </div>
+
+</body>
+</html>
+
+

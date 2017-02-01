@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+.rect1{ width:280px; height:60px; padding: 2px; background-color:#ccbbaa;margin: 6px;}
+.rect2{ width:280px; height:60px; padding:2px; 
+background-color:#ffff77;margin: 6px;}
+p {margin:2px}
+#free{position:absolute; top:10px; right:10px;
+width:60px; height:60px; padding: 2px; background-color:#ffaa99;margin: 6px;}
+
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+   $("#B1").click(function(){ 
+       
+       /*$(".rect2 > p + p").css({ color: "red",
+                               fontSize: "12px",
+                               fontStyle: "italic"}); 
+       
+       $("p:odd").css({backgroundColor: "green"});
+       $("p:even").css({backgroundColor: "red"}); 
+       
+       $("p:contains('Another')").css({backgroundColor: "#FF69B4"}); 
+       
+       $("#six").css({width: 400,
+                     height: 80}) 
+      
+       $("#one").animate({width: 400,
+                        height: 80,
+                        fontSize: "20px"}, 3000); 
+      // $("#free").animate({ top: 365}, 3000);
+
+       $("#one").css({position: 'relative'});
+       $("#one").animate({top: 66}, 3000);
+       $("#six").css({position: 'relative'});
+       $("#six").animate({top: -424}, 3000);
+       
+       $(".rect2").css({position: 'relative'});
+       $(".rect2").animate({left: '+=40px', 
+                            width: 240}); */
+       $("#one, #two").css({ position: 'relative'});
+       //$("#two").css({ position: 'relative'});
+       
+       $("#one").animate ({
+           left: '+=40px'}, 3000, function() {
+           $("#two").animate({
+               left: '+=40px'}, 3000) });
+           
+
+  
+
+
+   });  // end B1 
+});
+
+</script>
+</head><body>
+<input type="button" id="B1" value="Change">
+
+<div class="rect1" id="one">  Div1
+<p> This is one. </p>
+ <p> Another paragraph. </p>
+</div>
+<div class="rect2" id="two">Div2
+<p> This is two. </p>
+ <p> Another paragraph. </p>
+</div>
+<div class="rect1" id="three">Div3
+<p> This is three. </p>
+ <p> Another paragraph. </p>
+</div>
+<div class="rect2" id="four">Div4
+<p> This is four. </p>
+ <p> Another paragraph. </p>
+</div>
+<div class="rect1" id="five">Div5
+<p> This is five. </p>
+ <p> Another paragraph. </p>
+</div>
+<div class="rect2" id="six">Div6
+<p> This is six. </p>
+ <p> Another paragraph. </p>
+</div>
+
+<div id="free"> Move me. </div>
+
+</body>
+</html>

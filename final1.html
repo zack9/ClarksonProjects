@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+#ifr { 
+    position: absolute;
+}
+
+    #frwrapper {
+        
+        width: 1000px;
+        height: 800px;
+        background-color: rgba(245, 245, 220, 0.44);
+        align-content: center;
+    }
+    
+    #thebuttons 
+    { 
+    width: 340px; top: -40px; 
+    background-color: dimgray;
+    padding: 20px 20px 0 20px;
+    position: absolute;
+    z-index: 100;
+    border-radius: 8px;
+}
+    
+    .b {margin-bottom: 18px;;
+        padding: 10px;
+    }
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+     $('#thebuttons').css({
+    'opacity': '0.1',
+  })
+  .hover(		
+  function(){
+   $(this).stop().animate(
+    {
+     opacity: .8,
+     top: '0' 
+    },500,'swing'
+   );   // end animate 
+  },         
+  function(){
+   $(this).stop().animate(
+    {
+     opacity: .1,
+     top: '-20px'  
+    },
+    200,
+    'swing'
+   );  
+  }         
+ );            
+    
+    
+  var url="";
+  $(".b").click(function(){
+    if (this.id=="B1"){
+     url="http://tinman.snell.clarkson.edu/~watsonzk/comm441/project1/project1.html";
+    }
+    if (this.id=="B2"){
+     url="http://tinman.snell.clarkson.edu/~watsonzk/comm441/button_show_thumb.html";
+    }
+   if (this.id=="B3"){     url="http://tinman.snell.clarkson.edu/~watsonzk/comm441/animate_play.html";
+    }
+    if (this.id=="B4"){url=      
+     "http://tinman.snell.clarkson.edu/~watsonzk/comm441/q5_rightDown.html"; 
+    }
+    if (this.id=="B5"){url=
+    "http://tinman.snell.clarkson.edu/~watsonzk/comm441/ttfixed.html";
+    }
+    $('#ifr').attr('src',url);
+    if (this.id=="B6"){url=
+    "http://tinman.snell.clarkson.edu/~watsonzk/comm441/project2/map.html";
+    }
+
+ });
+});
+
+</script>
+
+
+</head><body>
+<div id = "thebuttons">
+ <input type="button" id="B1" class="b" value="One">
+ <input type="button" id="B2"  class="b" value="Two">
+ <input type="button" id="B3"  class="b" value="Three">
+ <input type="button" id="B4"  class="b" value="Four">
+ <input type="button" id="B5"  class="b" value="Five">
+ <input type="button" id="B6"  class="b" value="Six">
+</div>
+
+<br> 
+<div id = "frwrapper">
+<iframe scrolling="yes" name="ifr" id="ifr" height="800" width="1000" frameborder=0 src= "" />
+</div>
+
+</body>
+</html>

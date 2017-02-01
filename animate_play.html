@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+    
+    body {
+        background-color: lightblue;
+    }
+
+    .rect1 {
+        width: 100px;
+        height: 200px;
+        left 200px;
+        top: 20%;
+        position: absolute;
+        box-shadow: 15px 10px 20px red;
+        border-radius: 20px;
+   
+
+    }
+    
+    .p2 {
+        cursor: pointer;
+    }
+    
+
+    .rect2 {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        left: 40%;
+        top: 400px;
+        background-image: url(pics/flying_bird.gif);
+        background-size: contain;
+        background-repeat: no-repeat;
+      
+    }
+    
+        
+            
+</style>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+    
+    $('.rect2').hide();
+    $('#B2').hide();
+    
+   $("#B1").click(function(){
+       $('.rect1').animate({
+           left: "+=300px",
+           width: '300px'}, 3000, function() {
+           $("div p:first-child").animate({
+               fontSize: "20px"}, 2000)
+           $("p").animate({
+               marginLeft: "100px"})
+           $("p:first-child").text("Click Me")
+           .addClass('p2');
+           $("p:first-child").click(function(){
+               $(this).css("color", "yellow")}
+                                   )
+           window.setTimeout(function () {
+                $("p:nth-child(2)").text('And me')
+               .addClass('p2');              
+            }, 3000);
+           $('#B2').fadeIn(2000);
+       });
+       
+       $("p:nth-child(2)").click(function(){
+        $('.rect1').fadeOut(2000)
+        .css("background-color", "rgba(168, 69, 76, 0.53)")
+       })
+
+    
+    $("#B2").click(function(){ 
+    $('.rect2').fadeIn(2000)
+    .animate({ top: '-=1000px', 
+               left: "+=1000"}, 10000)
+
+    });
+   });
+});
+
+</script>
+</head><body>
+
+    
+    <input type="button" id="B1" value="Move">
+    <input type="button" id="B2" value="Hello">
+    <br>
+    <div class = "rect1"> 
+        <p> Animate this</p>
+        <p> Animate that</p>
+    </div>
+    <div class = "rect2"> </div>
+    
+
+</body>
+</html>

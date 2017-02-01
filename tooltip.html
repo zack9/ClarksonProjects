@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html lang-en>
+<head>
+<meta charset=utf-8>
+<title> Comm441:  </title>
+
+<style>
+.trigger {
+    cursor:pointer;
+    width:150px;
+    height:150px;}
+
+.tooltip  {
+    display: none; 
+    margin-left: 15px;
+    padding: 8px 8px 6px 8px;
+    border-radius: 5px; }
+    
+
+#fixed-div {
+position:fixed;
+top:10px;
+right:10px;
+background-color:#000;
+color: white;
+padding:10px;
+}
+
+#fixed-div img {width:400px;height:400px;}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"> </script>
+<script src='tool_tip.js'></script>
+<script>
+$(document).ready(function(){ 
+ $('.trigger').tool_tip_fixed_pos('#fixed-div');
+
+});
+</script>
+
+</head>
+
+<body>
+
+<div id='fixed-div'></div>
+
+
+<img class='trigger' src='pics/koala.jpg'>
+<span class='tooltip'> <img src='pics/koala.jpg'> <br> Koala </span><Br/>
+
+<img class='trigger' src='pics/flight.jpg'>
+<span class='tooltip'> <img src='pics/flight.jpg'> <br> Take flight. </span><br>
+
+<img class='trigger' src='pics/lake.jpg'> 
+<span class='tooltip'> <img src='pics/lake.jpg'> <br> Lake </span><br>
+
+<img class='trigger' src='pics/meerkat.jpg'>
+<span class='tooltip'> <img src='pics/meerkat.jpg'> <br> Meerkat <Br/><br>
+</span>
+
+
+
+</body>
+</html>

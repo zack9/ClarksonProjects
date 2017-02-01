@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html><head>
+
+ <link rel="stylesheet" href= "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+
+<style> 
+.red{background-color:#dc143c;color:Cornsilk;}
+.green{background-color: #44bb44;}
+
+#right_col{position:absolute; top:0px; 
+left:330px; height:400px; width:200px;
+}
+
+.drop_here {margin-top:10px; 
+height:60px; width:185px;
+padding:6px; border: 2px solid #0033ee;
+}
+.dragme {width:160px; height:40px; padding:6px; 
+ background-color:#ccbbaa;margin-left:12px;
+ z-index: 5;}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+ $(".dragme").draggable();
+     $(".drop_here").droppable({
+         drop: function( event, ui ) {
+         var dropped,drop_id,msg,target,text,color;
+         target= $(this)
+     dropped = ui.draggable;    
+     msg = dropped.text(); 
+     $("<p>" +msg + "</p>").appendTo(target);
+     target.droppable({disabled: true})
+     dropped.remove();  
+  //   alert (target.attr('id'));
+  //   alert (dropped.attr('id'));
+   
+
+   if (target.attr('id')=="as"){
+      if( dropped.attr('id')=="mps"){
+        color="green"}  
+      else {color="red";}
+   }
+   if (target.attr('id')=="es"){
+     if(dropped.attr('id')=="mph"){color="green";}  
+     else {color="red";}
+   }
+   if (target.attr('id')=="troll"){
+      if (dropped.attr('id')=="species")  
+           {color="green";}  
+   else {color="red";}
+   } 
+             alert(color);
+   target.addClass(color);
+             
+   
+  } // end drop: function...
+ });   // end droppable
+});     // end .ready
+</script>
+</head><body>
+
+<br>
+<div class="dragme" id="mph"> 24 mph </div>
+<br>
+
+<div class="dragme" id= "mps"> 11 meters per second</div>
+<br>
+
+<div class="dragme" id="species"> African or European Swallow?</div>
+<br>
+
+
+<div id=right_col> 
+<br>
+
+
+<div class="drop_here" id="as"> Flight Speed of African Swallow? </div>
+
+<div class="drop_here" id="es"> Flight Speed of European Swallow  </div>
+
+<div class="drop_here" id="troll"> What does a troll know? </div>
+
+
+<br>
+
+<input type="button" value="Submit" id="submit">
+
+</div>
+
+ <br> <br><br> <br>
+See <a href="http://api.jqueryui.com/draggable/" target="ui"> http://api.jqueryui.com/draggable/</a> <br> <br>
+
+and
+
+<a href="http://api.jqueryui.com/droppable/" target="ui"> http://api.jqueryui.com/droppable/  </a>
+</body>
+</html>

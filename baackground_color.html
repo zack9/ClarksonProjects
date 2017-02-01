@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html><head>
+
+<style>
+div.rect1{position:absolute; left:30px; top:40px; width:300px; height:240px;background-color:#ccbbaa;
+margin-bottom: 14px; padding: 6px;}
+
+#clink{ position: absolute; top:330px;}
+
+</style>
+<script>
+window.onload= function(){
+
+ var Color= ["DarkSalmon","CadetBlue",  "Teal","#402200","DarkGreen","#224466","DarkRed", "Gold","DarkSeaGreen"]; //array literal
+
+
+ //alert(Color);
+ //console.log(Color); 
+
+ 
+ var button= document.getElementById("B1");
+ var show= document.getElementById("show")
+
+ button.onclick=function(){
+ var indx= Math.floor(Math.random() * Color.length); 
+     show.style.backgroundColor = Color[indx];
+
+  } // end button
+}   // end onload
+
+</script>
+</head><body>
+ <input type="button" value="Change color of div." id="B1">
+<br/><br/>
+<div class="rect1" id="show"> </div>
+
+
+</body>
+</html>

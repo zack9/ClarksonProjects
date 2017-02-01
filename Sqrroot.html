@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+ div.rect1{
+ position:absolute; left:100px; top: 50px;
+ width:280px; height:60px; padding: 6px;
+ background: #5d7f8e;
+    
+}
+</style>
+
+<script>
+window.onload= function(){
+ button1 = document.getElementById("B1");
+ button1.onclick= function (){
+   var input = prompt("Enter number to square: ","0")
+   var ob=document.getElementById("Here")
+   msg= (input * input);
+   ob.innerHTML= msg;
+ }
+} //end onload
+
+</script></head><body>
+<input type="button" id="B1" value="Hit the button" >
+<div class="rect1" id="Here">
+</body>
+</html>

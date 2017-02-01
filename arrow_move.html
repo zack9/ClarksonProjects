@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+    
+    body { background-color: rgb(105, 210, 224);
+    }
+    
+div.rect1{
+    position:absolute;
+    left:600px; 
+    top:280px;
+    background-image: url(bball.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+    padding: 10px; 
+}
+    #hoop{
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        top: 50px;
+        background-image: url(hoop1.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+        
+    
+div.push{
+    position:absolute; 
+    z-index:2;
+    bottom: 10%;
+    left: 45%;
+}
+    .push img {
+       height: 30px;
+        width: 30px;
+    }
+</style>
+
+<script type="text/javascript">
+var x= 600; var y= 280;
+var r_move; var down; var l_move; var up;
+window.onload= function(){
+ var the_div=document.getElementById("showDiv");
+ var move_right=document.getElementById("right");
+ var move_down=document.getElementById("down");
+var move_left=document.getElementById("left");
+ var move_up=document.getElementById("up");
+    
+ // Start directions
+    move_right.onclick=function(){ 
+   x+=5;
+   r_move = x + "px";
+   //alert(x);
+   the_div.style.left= r_move;
+ } 
+    move_down.onclick=function(){ 
+   y+=5;
+   down = y + "px";
+   the_div.style.top= down;
+ }
+    move_left.onclick= function() {
+    x-=5;
+    l_move = x + "px";
+    the_div.style.left = l_move;
+    }
+    move_up.onclick= function() {
+    y-=5;
+    up = y + "px";
+    the_div.style.top = up;
+    }
+} // end onload
+        
+</script>
+
+</head>
+    
+<body>
+<div id ="hoop"> </div>
+<div class="rect1" id="showDiv">
+</div>
+<div class="push"> 
+<img src="pics/small_arrow_dn.png" id="down"  />  
+<img src="pics/small_arrow_rt.png" id="right"  />
+<img src="pics/small_arrow_lt.png" id="left"  />
+<img src="pics/small_arrow_up.png" id="up"  />
+<div>   Move the basketball.</div>
+</div>
+ </body>
+</html>

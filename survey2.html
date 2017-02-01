@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+    div.rect1 {
+    position: absolute;
+    top:10px;
+    right: 20px;
+    width:300px; height:260px; padding: 6px; background-color:#f2f6fd;
+    margin-bottom: 14px;
+}
+    
+    #survey_form {
+        width: 600px;
+        height:500px;
+    }
+</style>
+
+<script>
+
+        
+            
+window.onload= function(){
+    
+    
+    // Store input values
+    var msgArray = []; 
+    
+
+    document.form_one.firstname.onblur = function() {
+        msgArray[0] = "First Name: " + document.form_one.firstname.value;
+        document.getElementById("showDiv").innerHTML= msgArray.join("<br>");
+
+    }
+
+    document.form_one.Last_Name.onblur = function() {
+        msgArray[1] = "Last Name: " + document.form_one.Last_Name.value;
+        document.getElementById("showDiv").innerHTML= msgArray.join("<br>");
+
+    }
+  
+    document.form_one.member_password.onblur = function() {
+        msgArray[2] = "Password: " + document.form_one.member_password.value;
+        document.getElementById("showDiv").innerHTML= msgArray.join("<br>");
+
+    }
+
+    var radios = document.getElementsByName("sex");
+    for (i = 0; i < radios.length; i++) {
+            radios[i].onchange = function() {                
+                radioMessage();
+            }
+    }
+    
+    function radioMessage () {       
+        var radios = document.getElementsByName("sex");
+        for (var j = 0; j < radios.length; j++) {
+                if (radios[j].checked)
+                msgArray[3] = "Gender: " + radios[j].value;
+            }
+        document.getElementById("showDiv").innerHTML = msgArray.join("<br>");     
+    }
+    
+    var checkBox = document.getElementsByName("notice");
+    for (i = 0; i < checkBox.length; i++) {
+        checkBox[i].onchange = function() {
+            checkBoxMessage();
+        }
+    }
+    
+    function checkBoxMessage() {
+        msgArray.splice(4, 5);
+        
+        var ticks = document.getElementsByName("notice"); 
+        for (var j = 0; j < ticks.length; j++) {
+            if (ticks[j].checked) {
+                msgArray[4 + j] =("How did you hear?: " + ticks[j].value);
+            }
+        }
+        document.getElementById("showDiv").innerHTML = msgArray.join("<br>");
+    }
+    document.form_one.meetime.onchange = function() {
+        msgArray[10] = "Preferred meeting time: " + document.form_one.meetime.value;
+        document.getElementById("showDiv").innerHTML = msgArray.join("<br>");
+    }
+    
+        document.form_one.birth_d.onblur = function() {
+        msgArray[11] = "Birth Date:  " + document.form_one.birth_d.value;
+        document.getElementById("showDiv").innerHTML= msgArray.join("<br>");
+
+    }
+                document.form_one.birth_m.onblur = function() {
+        msgArray[12] = "Birth Month:  " + document.form_one.birth_m.value;
+        document.getElementById("showDiv").innerHTML= msgArray.join("<br>");
+
+    }
+                document.form_one.birth_y.onblur = function() {
+        msgArray[13] = "Birth Year:  " + document.form_one.birth_y.value;
+        document.getElementById("showDiv").innerHTML= msgArray.join("<br>");
+
+    }    
+    
+        
+ 
+ var button1=document.getElementById("B1");
+ button1.onclick=function(){
+  var fn=document.getElementById("fname").value;
+  var ln=document.getElementById("lname").value;
+        var pword=document.getElementById("pword").value;
+  msg = "First name: " + fn + "<br>";
+  msg += "Last name: " + ln + "<br>";
+     if (pword=="Script"){
+         msg += "Password: OK  <br>"; 
+     }
+    else { msg+= "Password: Try \"Script\" <br>"; 
+    } 
+      var Sex= document.getElementsByName("sex");
+ for (var i=0; i <Sex.length; i++){
+   if (Sex[i].checked){
+    msg += "Gender: " + Sex[i].value + "<br>";
+   } 
+ }
+     var hear = document.getElementsByName("notice");
+     msg += "You heard about us through: " + "<br>"; 
+     for (var j=0; j<hear.length; j++) {
+         if (hear[j].checked){
+             msg += hear[j].value + "<br>";
+         }
+     }
+     
+     var time  = document.getElementsByName("meetime").value;
+     msg += "Best time to meet: " + time + "<br>";
+     
+
+ 
+ 
+ var birthDate = document.getElementsByName("birth_").value;
+    msg += "Birth date: " + birthDate + "br>";
+    
+     document.getElementById("showDiv").innerHTML=msg;
+ }
+    
+ 
+}
+</script>
+    
+</head><body>
+ <h3> Chess Club </h3>
+    
+<div class="rect1" id="showDiv"> </div>
+<div id = survey_form>
+<form method = "post" action="echo.cgi" name="form_one" id = 'form1'>
+    First name: <input type="text"  id="fname" name="firstname"  required/> 
+    Last name: <input type="text" id="lname" name="Last_Name" required/><br> <br>
+    Password: <input type="password"  id="pword" name ="member_password" required/> <br><br>
+    <fieldset>
+        <legend>Sex: </legend>
+        <input type = "radio" class = "Genders"  name = "sex" id = "gender" value = "male"> Male
+        <input type = "radio"  class = "Genders" name = "sex" id = "gender2" value = "female"> Female <br><br>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend> How did you hear about us? </legend>
+        <input type = "checkbox" name = "notice" value = "School"> School <br>
+        <input type = "checkbox" name = "notice" value = "Internet"> Internet <br>
+        <input type = "checkbox" name = "notice" value = "Posters"> Posters <br>
+        <input type = "checkbox" name = "notice" value = "Friend"> Friends <br>
+        <input type = "checkbox" name = "notice" value = "not_real"> You're not a real club 
+        <br>
+    </fieldset>
+    <br>
+    <select name="meetime">
+    <option value="">Preferred meeting time</option>
+    <option value="morning">Morning</option>
+    <option value="noon">Noon</option>
+    <option value="afternoon">Afternoon</option>
+    <option value="night">Night</option>
+    </select>
+    <br>
+    <br>
+    Birth
+Day:<input type="text" name="birth_" id="birth_d" pattern="\d{1,2}" title = "1-2 numbers"  required/>
+Month:<input type="text" name="birth_" id="birth_m" pattern="\d{1,2}" title = "1-2 numbers required" required/>
+Year:<input type="text" name="birth_" id="birth_y" pattern="\d{2,4}" title = "2-4 numbers required" required/>
+<br/><br/>
+    
+    
+<input type="button" value="View" id="B1">
+<input type="submit" value="Submit">
+
+
+
+</form>
+       </div>
+
+</body>
+</html>

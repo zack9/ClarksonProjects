@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang-en>
+<head>
+<meta charset=utf-8>
+    <title>  Drill Down </title>
+    <style>
+        
+        
+        .newClass {
+            color: green;
+            font-family: fantasy;
+            font-size: 30px;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+
+    
+    </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
+    <script>
+        
+        $(document).ready(function(){
+            $("#textDiv").click(function(){
+            $('li').addClass("newClass");
+            })
+        });
+
+        
+    </script>
+</head>
+    <body> 
+        <div id = "textDiv" class = "drillist"> 
+        <ul>
+            <li>Hat</li>
+            <li>Shirt</li>
+            <li>Pants</li>
+            <li>Jeans</li>
+            <li>Sweater</li>
+        </ul>
+        </div>
+    
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+   
+    #wikibox {
+        width: 400px;
+        height: 600px;
+        position: absolute;
+        margin: auto;
+        overflow: scroll;
+
+    }
+
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function(){
+        
+        
+
+
+        //Extract infobox on location from Wikipedia.
+        function extractWiki(location){
+        searchTerm = location;
+        
+        var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm + "&redirects&prop=text&callback=?";
+        $.getJSON(url,function(data){
+        HTMLwiki = data.parse.text["*"];
+        $wikiNFO = $("<document>"+HTMLwiki+"</document>");
+        $("#wikibox").append($wikiNFO.find('.infobox').html());
+
+        }) }
+        
+        extractWiki("Brisbane");
+    })
+        
+
+        
+</script>
+    
+</head><body>
+    
+    <div id = "wikibox"> </div>
+
+
+
+</body>
+</html>

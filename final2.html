@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+#shoename { font-weight: bold;}
+img { width: 400px;
+    height: 400px;
+}
+div.rect1 {position:relative;}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+    
+$(document).ready(function(){
+  $.getJSON('mypics.json', function(dat) {   
+  var msg="";
+      var img = "";
+  $("#B1").click(function(event){
+     var sh1= dat.sh.pic1;
+     shname= sh1.name
+     img = sh1.path
+     shdesc = sh1.desc
+     $('#shoename').html(shname);
+    $('#showpic').attr('src', img);
+    $('#shoedesc').html(shdesc);
+  }); 
+  $("#B2").click(function(event){
+     var sh2= dat.sh.pic2;
+     shname= sh2.name
+     img = sh2.path
+     shdesc = sh2.desc
+     $('#shoename').html(shname);
+    $('#showpic').attr('src', img);
+    $('#shoedesc').html(shdesc);
+  });
+      
+    $("#B3").click(function(event){
+     var sh3= dat.sh.pic3;
+     shname= sh3.name
+     img = sh3.path
+     shdesc = sh3.desc
+     $('#shoename').html(shname);
+    $('#showpic').attr('src', img);
+    $('#shoedesc').html(shdesc);
+  }); 
+      
+     $("#B4").click(function(event){
+     var sh4= dat.sh.pic4;
+     shname= sh4.name
+     img = sh4.path
+     shdesc = sh4.desc
+     $('#shoename').html(shname);
+    $('#showpic').attr('src', img);
+    $('#shoedesc').html(shdesc);
+  });
+ });
+});
+
+</script>
+</head><body>
+
+
+<input type="button" id="B1" value="Shoe 1">
+<input type="button" id="B2" value="Shoe 2">
+<input type="button" id="B3" value="Shoe 3">
+<input type="button" id="B4" value="Shoe 4">
+    
+
+
+<br/><br/>
+<div class="rect1" id="showdiv">
+    <img src= "" id = "showpic">
+    <div id = "shoename"></div>
+    <div id = "shoedesc"></div>
+
+</div>
+
+
+</body>
+</html>

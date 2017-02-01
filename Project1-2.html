@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html><head>
+
+<style type="text/css">
+
+
+    body { 
+        font-family: monospace;
+        font-size: 20px;
+    }
+
+    div.rect1 {
+    position:absolute; 
+    left:0px; 
+    top:0px; 
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    border-style: groove; 
+    
+    width:70%;
+    height:80%;
+    background-color:#221d17;
+}
+
+ 
+    #nav_bar ul { 
+        margin-left: 40%;
+    }
+    
+    #nav_bar {
+        margin-top: -50px;
+        
+    }
+    
+    .paddle {
+        position: absolute;
+        width: 20px;
+        top: 30%;
+        height: 150px;
+        background-color: aliceblue;
+    }
+    
+    #playerPaddle {
+        right: 0px;
+    }
+
+</style>
+  
+    
+<!------ Start Javascript ------->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
+<script type="text/javascript">
+
+ 
+ 
+    // Arrow key event.  
+    $(function () {
+        var pane = $('#gameBoard'),
+            box = $('#playerPaddle'),
+            wh = pane.width() - box.width(),
+            wv = pane.height() - box.height(),
+            d = {},
+            x = 10;
+
+        function newh(v,a,b) {
+        var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0);
+        return n < 0 ? 0 : n > wh ? wh : n;
+        }
+
+        function newv(v,a,b) {
+        var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0);
+        return n < 0 ? 0 : n > wv ? wv : n;
+        }
+
+        $(window).keydown(function(e) { d[e.which] = true; });
+        $(window).keyup(function(e) { d[e.which] = false; });
+
+        setInterval(function() {
+        box.css({
+            left: function(i,v) { return newh(v, 37, 39); },
+            top: function(i,v) { return newv(v, 38, 40); }
+        });
+            wh = pane.width() - box.width();
+            wv = pane.height() - box.height();
+    
+        }, 20);
+        
+       function makePosition() {
+       }
+           
+    });
+    
+    
+        
+
+    
+    
+
+    
+
+    
+    
+
+</script>
+</head><body>
+
+    <div class="rect1" id="gameBoard"> 
+        <div id = "nav_bar" class = "navigate">
+            <ul>
+        Pong?
+            </ul>
+        </div>
+        <div id = "playerPaddle" class = "paddle" > </div>
+        <div id = "otherPaddle" class = "paddle" > </div>
+    </div>
+
+
+    
+
+
+</body>
+</html>

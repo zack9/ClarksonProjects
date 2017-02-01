@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html><head>
+
+<script type="text/javascript">
+      window.onload=function (){
+
+      var wdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var theDate= new Date();
+      var weekDay = wdays[theDate.getDay()];
+      var theDay = theDate.getDate();
+      var theMonth =months[theDate.getMonth()];
+      var theYear = theDate.getFullYear();
+      var msg= weekDay + " " + theDay + " " + theMonth + ", " + theYear ;
+
+      document.getElementById("today").innerHTML = msg;
+        
+          
+ //Collect all divs.         
+var body= document.getElementsByTagName('body')[0];
+ var rect1= document.getElementById('rect1');
+ var rect2= document.getElementById('rect2');
+ var rect3= document.getElementById('rect3');
+ var rect4= document.getElementById('rect4');
+ var rect5= document.getElementById('rect5');
+var boxes = document.getElementsByClassName('box');
+
+          
+      //Begin swapping. 
+          
+    var wasClicked = false;           
+    document.getElementById("First_B").onclick=function(){
+     
+        if (wasClicked == false) {
+            body.style.backgroundImage = 'url(pics/head.jpg)'
+            document.getElementById("First_B").innerHTML = "One.";
+            wasClicked = true;
+        }
+        else {    
+            body.style.backgroundImage = 'url(pics/lake.jpg)'
+            document.getElementById("First_B").innerHTML = "First.";
+            wasClicked = false
+          }
+        
+        rect1.style.borderRadius ="100px"; 
+        rect2.id='rect2a';
+    }
+    
+    
+        document.getElementById("Second_B").onclick=function(){
+        
+            rect3.style.visibility = 'visible'; 
+            rect4.style.backgroundImage = 'url(pics/flight.jpg)';
+            rect5.classList.add('box2');
+
+
+}
+  
+     var hidden = false;          
+    document.getElementById("Third_B").onclick=function(){
+                 for(i=0; i<boxes.length; i++) {
+                    if (!hidden) {
+                        document.getElementById("Third_B").innerHTML = "Three";
+                        boxes[i].style.visibility = 'hidden';
+                                 hidden = true;
+                    }
+                    else { boxes[i].style.visibility = 'visible';
+                          document.getElementById("Third_B").innerHTML = "Third";
+                            hidden = false;
+                            }
+                 }
+    }
+                     
+    document.getElementById("Fourth_B").onclick=function(){
+        
+        rect4.classList.add('box2');
+        rect3.style.opacity = '30%';
+
+    } 
+    document.getElementById("Fifth_B").onclick=function(){
+        
+        for (i = 0; i < boxes.length; i++) {
+            boxes[i].classList.add('box3');
+        }
+    } 
+
+      }//end window.onload
+      </script>
+
+<style type="text/css">
+
+body {
+    background-image:url('pics/lake.jpg');
+    background-repeat:no-repeat;
+    background-size: 100%;
+    background-color:rgba(0,0,0,0.1);
+    }
+
+    .box {
+        margin-top: 10px;
+        visibility: visible;
+
+    }
+    .box2 {
+        
+        margin-left: 400px;
+    }
+    
+    .box3 {
+    
+    
+     -webkit-transform: perspective(200px) translate3d(100px, 0, -70px) 
+    scale3d(1,1,1.2)  rotate3d(0, 1, 0, -60deg);
+    
+    }
+    
+
+        
+#rect1{
+    position: absolute;
+    top: 200px;
+    left: 10px;
+    width:250px;
+    height:200px;
+    padding: 1px;
+    background-image: url("pics/sheltie.jpg");
+    background-size: cover;
+        }
+
+#rect2{
+    position: absolute;
+        top: 200px;
+    left: 350px;
+    width:100px;
+    height:250px;
+    padding: 6px;
+    background-image: url("pics/meerkat.jpg");
+    background-size: cover;    
+}
+    
+#rect2a{
+    position: absolute;
+    top: 200px;
+    left: 350px;
+    width:100px;
+    height:250px;
+    padding: 6px;
+    background-image: url("pics/meerkat.jpg");
+    background-size: cover;  
+    -webkit-transform: perspective(600px) translate3d(100px, 0, -70px) 
+    scale3d(1,1,1.2)  rotate3d(0, 1, 0, -60deg);
+}   
+
+    
+#rect3{
+    position:absolute;
+    left:750px; top: 200px;
+    text-align: center;
+    width:500px;
+    height:400px;
+    padding: 6px;
+    background-image: url("pics/mountain.jpg");
+    background-size: cover;
+    visibility: hidden;
+    }
+    
+    #rect3a{
+    position:absolute;
+    left:700px; top: 0px;
+    text-align: center;
+    width:500px;
+    height:400px;
+    padding: 6px;
+    background-image: url("pics/mountain.jpg");
+    background-size: cover;
+    
+    }
+    
+#rect4{
+    position: absolute;
+    top: 500px;
+    left: 350px;
+    width:150px;
+    height:200px;
+    background-image: url(pics/koala.jpg);
+    background-size: cover;
+    
+    }
+    
+#rect5{
+  position: absolute;
+    top: 500px;
+    left: 50px;
+    width:200px;
+    height:200px;
+    border-width: 2px;
+    border-style: solid;
+    background-image: url("pics/tiger2.jpg");
+    background-size: cover;
+    }
+    
+
+/* Popper */
+@-webkit-keyframes hvr-pop {
+50% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+
+    }
+}
+
+@keyframes hvr-pop {
+50% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    }
+}
+
+.hvr-pop {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    }
+    
+.hvr-pop:hover, .hvr-pop:focus, .hvr-pop:active {
+    -webkit-animation-name: hvr-pop;
+    animation-name: hvr-pop;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1.0s;
+    height:200px;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    }
+    
+
+/* Ripple In */
+@-webkit-keyframes hvr-ripple-in {
+    100% {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    }
+}
+
+@keyframes hvr-ripple-in {
+    100% {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+    }
+}
+
+.hvr-ripple-in {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    }
+    
+.hvr-ripple-in:before {
+    content: '';
+    position: absolute;
+    border: #e1e1e1 solid 4px;
+    top: -12px;
+    right: -24px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    }
+    
+.hvr-ripple-in:hover:before, .hvr-ripple-in:focus:before, .hvr-ripple-in:active:before {
+-webkit-animation-name: hvr-ripple-in;
+animation-name: hvr-ripple-in;
+}
+    
+    /*  The buttons section */   
+#nav{ 
+    position:absolute; 
+    left: 40%; 
+    top:5px;
+    width:360px;
+    z-index: 101;
+    border-radius: 10px;
+    background-color: rgba(74, 96, 168, 0.33)
+}
+    
+
+#nav ul {
+  padding: 1px 0 0 px;
+  margin-left: 0px;
+  font: bold 12px helvetica, sans-serif;
+
+    
+}   
+    #nav ul li{
+  margin-left: 14px;
+  display: inline-block;
+    cursor: pointer;
+    
+    }
+    
+    #Third_B{
+        font-size: 20px;
+    }
+
+    </style>
+</head>
+<body>
+    
+<div id="nav">
+
+<ul>
+<li id="First_B"> First </li>
+
+<li id="Second_B"> Second </li>
+
+<li id="Third_B"> Third </li>
+
+<li id="Fourth_B"> Fourth </li>
+    
+<li id="Fifth_B"> Fifth</li>
+
+</ul>
+</div>
+    
+<div id = "picwrapper">
+<div id="rect1" class= "box"> </div>
+    
+<div id="rect2" class = "box"> </div>
+    
+<div id="rect3" class = "box hvr-ripple-in"></div>
+    
+<div id="rect4" class = "box"></div>
+    
+<div id="rect5" class = "box">
+    
+<p id = "today"> date here </p>
+</div>
+    </div>
+
+</body>
+</html>
+
+

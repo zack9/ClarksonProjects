@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+
+    .box{
+        margin-left:130px; top: 0px;
+    }
+    #wrapper {
+        width: 500px;
+        margin-left: 100px;
+        background-color: ghostwhite;
+    }
+    #wrapper h3 {
+
+        margin-left: 35%;
+
+    }
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script  src="jqcode/cycleall.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#slideshow').cycle({
+            fx: 'shuffle',speed:1500,timeout:2000 
+      });
+});
+</script>
+</head><body>
+
+<div id = "wrapper">
+    <h3> Zack's shoes </h3>
+<div id="slideshow" class="box">
+  <img src="pics/shoes/boot2.jpg" width="200" height="200" />
+  <img src="pics/shoes/boat1.jpg" width="200" height="200" />
+  <img src="pics/shoes/nike1.jpg" width="200" height="200" />
+  <img src="pics/shoes/plim1.jpg" width="200" height="200" />
+  <img src="pics/shoes/boot1.jpg" width="200" height="200" />
+</div>
+<br><br><br>
+
+    </div>
+</body>
+</html>

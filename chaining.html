@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang-en>
+<head>
+<meta charset=utf-8>
+    <title>  Chaining JQUERY </title>
+    <style>
+        
+        #textDiv {
+            position: absolute;
+            top: 45%;
+            left: 40%;
+            box-shadow: 15px 10px 20px red;
+            border-radius: 15px; 
+            background-color: peachpuff;
+            -webkit-transform: rotate(7deg);
+        }
+        
+        #textDiv:hover {
+            cursor: pointer;
+        }
+            
+
+    
+    </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
+    <script>
+        
+ 
+        $(document).ready(function(){
+        $('#textDiv').click(function() {
+            $('#textDiv').animate({
+                left: '+=20%',
+                width: '300px',
+                height: '300px',
+                fontSize: '40px'
+                }, 3000)
+                .fadeTo('slow', 0.6)
+                .animate({ top: '-=100'}, 3000)
+                .animate({ left: '-=500',
+                            width: '150px',
+                            height: '50px'}, 4000, function() {
+                                 
+                $('#textDiv').slideUp(3000, function() {
+                $('#textDiv').delay("slow").slideToggle(3000) }) })
+                }) 
+            });
+        
+                           
+                            
+                            
+            
+        
+    </script>
+</head>
+    <body> 
+        <div id = "textDiv" class = "chained1"> Chaining </div>
+    
+    </body>
+</html>

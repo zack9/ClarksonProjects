@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html><head>
+
+<style type="text/css">
+
+
+    body { 
+        font-family: monospace;
+        font-size: 20px;
+    }
+
+    div.rect1 {
+    position:absolute; 
+    left:0px; 
+    top:0px; 
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    border-style: groove; 
+    
+    width:70%;
+    height:80%;
+    background-color:#221d17;
+}
+    .ball { 
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        border-radius: 30px;
+        visibility: hidden;
+    }
+    #playerBall{
+        background-color: aqua;
+
+    }
+    #badBall{
+        background-color: red;
+    }
+ 
+    #nav_bar ul { 
+        margin-left: 40%; 
+
+    } 
+    
+    #button_bar {
+        position: absolute;
+        bottom: -20px;
+        right: 40%
+    }
+
+</style>
+  
+    
+<!------ Start Javascript ------->
+
+<script type="text/javascript">
+
+    
+window.onload= function(){
+
+
+ 
+    
+    // Get elements
+     ball = document.getElementsByClassName("ball");
+     playBoard = document.getElementById("gameBoard");
+    var button1 = document.getElementById("placeIt");
+    var button2 = document.getElementById("changeIt");
+    var button3 = document.getElementById("changePic");
+    var button4 = document.getElementById("discoBall");
+    var button5 = document.getElementById("velocityButton");
+    
+        
+    //---------- PlayerBoard Variables ----------//
+    
+     function setBoard() {
+    
+         
+    rect = playBoard.getBoundingClientRect(); 
+     xAxisMin = rect.left;
+     xAxisMax = rect.right;
+     yAxisMin = rect.top;
+     yAxisMax = rect.bottom; 
+     }
+
+    
+    var intervalId = window.setInterval(setBoard, 50)
+
+
+    
+     playerBall = ball[0];
+     otherBall = ball[1];
+    
+    var moveRightA =  1;
+    var moveUpA = 1;
+    var moveRightB =  0;
+    var moveUpB = 1;
+    
+    var velocityA = 15;
+    var velocityB = 15;
+    
+    var Color= ["DarkSalmon","CadetBlue",  "Teal","#402200","DarkGreen","#224466","DarkRed", "Gold","DarkSeaGreen"]; 
+
+    
+    //---------------- Functions ----------------//
+    
+    
+    // Get random integer
+    function randomInt(min,max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+    
+    //Move ball A.
+    
+    function move_A() {
+        if (moveRightA) {
+            playerPosX += velocityA;
+            if (playerPosX > (xAxisMax - xAxisMin - 70)){
+                moveRightA = 0;}
+        }
+        else { 
+            playerPosX -= velocityA
+        }         
+        if (playerPosX < 0) { //Within the div
+            playerPosX += velocityA;
+            moveRightA = 1;
+        }        
+        if (moveUpA) {
+            playerPosY -= velocityA;
+            if (playerPosY < 0) {
+                moveUpA = 0;}
+        }
+        else { 
+            playerPosY += velocityA;
+        }
+        if (playerPosY > yAxisMax - yAxisMin - 50) {
+            playerPosY -= velocityA;
+            moveUpA = 1;
+        }
+  
+        var y_move = playerPosY + "px";             
+        var r_move = playerPosX + "px";
+        
+        playerBall.style.left = r_move;
+        playerBall.style.top = y_move;
+    }
+    
+    //move ball B
+    
+        function move_B() {
+        if (moveRightB) {
+            otherPosX += velocityB;
+            if (otherPosX > (xAxisMax - xAxisMin - 70)){
+                moveRightB = 0;}
+        }
+        else { 
+            otherPosX -=velocityB
+        } 
+
+        if (otherPosX < 0) { //Within the div
+            otherPosX += velocityB;
+            moveRightB = 1;
+        }        
+        
+        if (moveUpB) {
+            otherPosY  -= velocityB;
+            if (otherPosY  < 0) {
+                moveUpB = 0;}
+        }
+        else { 
+            otherPosY  += velocityB;
+        }
+            
+        if (otherPosY  > yAxisMax - yAxisMin - 50) {
+            otherPosY  -= velocityB;
+            moveUpB = 1;
+        }
+        var y_move = otherPosY  + "px";             
+        var r_move = otherPosX + "px";
+            
+        otherBall.style.left = r_move;
+        otherBall.style.top = y_move;
+       
+    }
+             
+    var intervalId=window.setInterval(move_A,20)
+    var intervalId=window.setInterval(move_B,20)
+    
+    
+    
+    // Randomly place the balls within the dynamic div.
+    
+    button1.onclick = function placeBalls() {
+        
+    playerPosX = randomInt(1, (xAxisMax - xAxisMin - 75)) 
+    playerPosY = randomInt(1, (yAxisMax - yAxisMin - 75))       
+    playerBall.style.left = playerPosX + "px";
+    playerBall.style.top = playerPosY + "px";
+    playerBall.style.visibility = "visible";
+    
+       
+    otherPosX = randomInt(1, (xAxisMax - xAxisMin - 75)) 
+    otherPosY = randomInt(1, (yAxisMax - yAxisMin - 75))  
+    otherBall.style.left = randomInt(1, (xAxisMax - xAxisMin - 75)) + "px";
+    otherBall.style.top = randomInt(1, (yAxisMax - yAxisMin - 75)) + "px";
+    otherBall.style.visibility = "visible";
+    
+
+
+   } 
+    // Bounce ball A on click.
+    button2.onclick = function changeIt() {       
+     moveUpA = 0; 
+    } 
+    
+    
+    // Change picture to basketball or back again.
+    var checked = false;
+    
+    button3.onclick = function changePic() {
+        if (!checked) {
+        playerBall.style.backgroundImage = 'url(pics/bball.png)';
+        velocityA = 10;
+        playerBall.style.backgroundColor = "black";
+            checked = true;
+        }
+        else {
+            playerBall.style.backgroundImage = "none";
+            velocityA = 20;
+            playerBall.style.backgroundColor = "aqua";
+            checked = false;
+        }
+    }
+
+    // Turn on disco ball
+    var checkedInt = false;
+    
+    button4.onclick = function discoBall() {
+        
+        var indx1= Math.floor(Math.random() * Color.length); 
+        otherBall.style.backgroundColor = Color[indx1];
+        if (checkedInt) { 
+            return }
+        else {
+        var intervalId=window.setInterval(discoBall,100)
+        checkedInt = true;
+        }
+    }
+    
+    
+    var velocCheck = false;
+    
+    button5.onclick = function changeVelocity() {
+        if (!velocCheck) {
+            velocityA = 25;
+            velocityB = 25;
+            button5.innerHTML = "Slow";
+            velocCheck = true;           
+        }
+        else {
+            velocityA = 15;
+            velocityB = 15;
+            button5.innerHTML = "Fast";
+            velocCheck = false;
+        }
+    }
+        
+        
+        
+    
+}
+ 
+</script>
+</head><body>
+    <div></div>
+            <div id = "nav_bar" class = "navigate">
+            <ul>
+                Bouncing Balls
+            </ul>
+        
+        </div>
+    <div class="rect1" id="gameBoard"> 
+
+        <div id = "playerBall" class = "ball"> </div>
+        <div id = "badBall" class = "ball"> </div>
+        
+    <div id = "button_bar" class = "gamebuttons"> 
+    <button type = "button" id = "placeIt"> Go  </button>
+    <button type = "button" id = "changeIt"> Bounce </button>
+    <button type = "button" id = "changePic"> Hoops </button>
+    <button type = "button" id = "discoBall"> Disco </button>
+    <button type = "button" id = "velocityButton"> Fast </button>
+    </div>
+    
+    </div>
+
+    
+
+
+</body>
+</html>

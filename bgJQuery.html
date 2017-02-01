@@ -1,0 +1,103 @@
+
+<!doctype html>
+<html lang-en>
+<head>
+<meta charset=utf-8>
+<title>  Zack's BGJQuery </title>
+
+<link rel=stylesheet type="text/css" href="js.css">
+
+<style type="text/css">
+
+body {
+    background-image: url(pics/lake.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+
+
+#nav{ 
+    position:absolute;
+    left: 40%;
+    background-color: rgba(45, 50, 56, 0.22);
+    border-radius: 35%;
+
+
+}
+#nav ul {
+  padding: 2px 15px 0 10px;
+    font-size: 18px;
+    font-family: sans-serif;
+
+}
+    
+#nav ul li:hover {
+    
+    cursor: pointer;
+    color: rgba(50, 93, 163, 0.56);
+    
+
+} 
+#nav ul li{
+  margin-left: 10px;
+  display: inline-block;
+    
+}
+    
+#nav ul li a{
+   margin: 10px;
+
+   background-color: #ffeebb;
+}
+    
+
+</style>
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+
+$(document).ready(function (){
+  $("#tigerB").click(function(){
+       $('body').css({
+           'background-image':'url(pics/tiger2.jpg)'});      
+  });
+
+  $("#flightB").click(function(){
+       $('body').css({'background-image':'url(pics/flight.jpg)'});      
+  });
+
+  $("#outdoorB").click(function(){
+       $('body').css({'background-image':'url(pics/outdoor.jpg)'});      
+  });
+
+  $("#lakeB").click(function(){
+       $('body').css({'background-image':'url(pics/lake.jpg)'});      
+  });
+
+});  
+
+</script>
+</head>
+
+<body>
+
+<div id="nav">
+
+<ul>
+<li id="tigerB"> Tiger </li>
+
+<li id="flightB"> Bird </li>
+
+<li id="outdoorB"> Outdoors </li>
+
+<li id="lakeB"> Lake </li>
+
+</ul>
+</div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+.rect1{ width:300px; height:150px; padding:6px; margin-left:12px; margin:7px; font-size:20px; background:yellow}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src ="mylib.js"> </script>
+<script src ="mycolors.js"> </script>
+
+
+<script>
+$(document).ready(function(){ 
+
+var myColors = ["Cornsilk",
+  "aliciablue",
+  "goldenrod",
+  "gainsboro",
+  "ghostwhite",
+  "DarkGray"]
+
+var color = shuffle_arr(myColors);
+var color1 = color[0];
+var color2 = color[1];
+
+ $(".rect1").css({backgroundColor: color1,
+		color: color2})
+
+}); 
+</script>
+
+</head>
+<body>
+
+<h3>Change colors on load (ready)</h3>
+
+<div class="rect1" id="div1">
+Color Swap 
+</div>
+</body>
+</html>

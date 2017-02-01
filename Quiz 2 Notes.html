@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html><head>
+<script>
+    
+    
+window.onload=function (){
+//Create Object
+ var t_car = {
+        "make":1,
+        "model": "Rav4",
+        "year": "2010"
+ }
+//Alert various
+ 
+ var patt = /[abc]/;
+    
+ 
+ var button1=document.getElementById("B4");
+ button1.onclick = function() {
+   alert (typeof t_car);
+   alert (typeof t_car.make);  
+   alert(t_car.make);
+    alert(patt.test("Hello"));
+     
+ }         
+}
+
+
+---- --------/*  RegEx  */-------- --------
+    
+    /* 
+    
+    /pattern/modifier
+    [abc] 
+    [^abc] - find any char not in bracets.
+    
+    */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</script></head>
+<body>
+
+<h3> An object literal </h3>
+
+<input type="button" value="Show Alert" id="B4"><br /> 
+
+<p>Create an object.  Here is a neater way to create an object. Compare obj1 and obj1a.</p>
+<p>Notice that this is much like creating an array literal ... which uses parentheses instead of curly brackets.</p>
+
+<p> <b>Note:</b>  This is an example of the popular JavaScript Object Notation <b>JSON</b>, which is fre quently used in place of the somewhat bulkier XML tag notation. See <a href="text/ambrose">ambrose.json</a> for my example.
+Also see at jason.org <a href="http://json.org/example.html"> examples</a> for comparing XML and JSON. </p>
+
+</body>
+</html>

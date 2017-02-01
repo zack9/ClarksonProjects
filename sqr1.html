@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html><head>
+
+<style>
+  div.rect1{
+  position:absolute;
+  left:150px; top: 50px;
+  width:160px;
+  height:40px;
+  padding: 6px;
+  background-color:rgba(101, 142, 198, 0.53);
+}
+</style>
+
+<script>
+window.onload= function(){
+  var button1= document.getElementById("B1");
+var button2= document.getElementById("B2");
+  button1.onclick= function(){
+    var num=document.getElementById("num1").value;
+    //alert (num);
+    var product = (num * num);
+    var ob=document.getElementById("displayDiv")
+    ob.innerHTML= product;
+  }
+  button2.onclick = function (){
+      var num=document.getElementById("num1").value;
+      var product = Math.sqrt(num);
+      var ob=document.getElementById("displayDiv")
+      ob.innerHTML= product;
+  }
+}
+
+    function myFunction() {
+    document.getElementById("num1").value = " ";
+
+}
+
+
+</script></head><body>
+Please enter a number to square:
+
+<input type="text"  id="num1" placeholder="Enter a number." onfocus="myFunction()">
+
+<input type="button" value="Square it" id="B1">
+<input type="button" value="Square root it" id="B2">
+
+ <div class="rect1" id="displayDiv">
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+    
+    #mapwrapper { 
+             width: 900px;
+            height: 700px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+    }
+    #mapwrapper p {
+        top: 600px;
+        left: 350px;
+        position: absolute;
+        font-size: 20px;
+        font-family: sans-serif;
+    }
+    
+
+    #aus-map {
+        background-image: url(pics/straya.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: inherit;
+        height: inherit; 
+        z-index: -2;
+
+    }
+    .redmarker {
+        position: fixed;
+        width: 25px;
+        height: 40px;
+        background-image: url(pics/red-mark.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 1;
+    }
+    
+    .bluemarker {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        background-image: url(pics/blue-mark.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.85;
+
+
+    }
+       
+    img {
+        width: 200px;
+        height: 200px;
+        position: inherit;
+    }
+
+    #darwinmark { left: 354px;top: 20px;} #derbymark {left: 234px; top: 110px}#perthmark {left: 138px;top: 357px }  #albanymark { left: 179px; top: 411px } #adelaidemark { left: 484px; top: 396px} #hamiltonmark { left: 527px; top: 450px}  #melbmark { left: 573px; top: 440px}#hobartmark {left: 600.5px;top: 540px}   #canberramark { left: 645px; top: 400px;}#sydneymark {left: 665px;top: 380px;z-index: 1;}#newcmark {left: 676px;top: 363px; }#brisbanemark {left: 700px;top: 263px;} #rockymark {left: 660px;top: 195px;} #townmark {left: 610px;top: 135px;
+    } 
+    
+    
+    .hiddenpics {
+        display: none;
+    }
+    .messagepop {
+        background-color: rgba(115, 217, 190, 0.90);
+        border:1px solid #999999;
+        border-radius: 10px;
+        margin-top: 15px;
+        position:absolute;
+        left: 270px;
+        top: 100px;
+        height: 230px;
+        text-align:center;
+        width:280px;
+        z-index:1;
+        padding: 25px 25px 20px;
+
+
+    }
+    
+    #slideshow {
+        left: 40px;
+    }
+
+</style>
+<link rel="stylesheet" type="text/css" href="jqcode/tooltipster.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script  src="jqcode/jquery.easing.1.3.js"> </script>
+<script type="text/javascript" src="jqcode/jquery.tooltipster.min.js"></script>
+<script  src="jqcode/cycleall.js"></script>
+    
+<script>
+
+    $(document).ready(function(){
+        
+      
+/* ------- JQuery Functions -------- */
+        
+        // Activate Tooltip
+         $('.tooltip').tooltipster({
+             position: 'top',
+             animation: 'fall',
+             contentAsHTML: true
+         });
+
+        // Change between markers
+        $(".redmarker").hover(function() {
+            $(this).addClass("bluemarker");
+
+        },
+            function() {  
+            $(this).removeClass("bluemarker");
+        }) // End Hover 
+        
+        //Starts fade cycle
+        function cycleThrough() {
+        $('#slideshow').cycle({
+        fx: 'fade',speed:1500,timeout:2000 
+        }) };
+        
+        // Stops cycle
+        function cycleStop() {
+            $('#slideshow').cycle('stop')}
+        
+        
+        //Resets slideshow and hides popbox
+        function resetSlide() {
+            cycleStop();
+            $('#slideshow, #titlebar').empty();
+            $notClicked = 1; 
+        } //End Reset Slide
+             
+            
+        // Easing animation for markers on mouseover.
+        $('.redmarker').mouseover(function(){ 
+        $(this).animate(
+            {top:  '-=10px'},
+            {duraton:1, easing:'swing'});
+         $(this).animate(
+            {top:'+=10px'},
+            {duraton:1, easing:'swing'}); 
+
+        });
+        
+        
+        // Variable to determine slideshow state.
+        $notClicked = 1
+
+
+        //  Appends location pictures to slideshow on click and begins cycle.
+        $('.messagepop').hide();
+        $('.redmarker').click(function(){ 
+            $('.messagepop').slideToggle();
+            
+            var appendDiv = $(this).next();
+            var locationName = $(this).attr('name');
+            var wikiValue = $(this).attr('value');
+            
+            var url = "http://en.wikipedia.org/wiki/" + wikiValue;
+                    
+
+            if ($notClicked) {
+            var slidePics = $(this).next().children();
+            slidePics.clone().appendTo('#slideshow');
+            $('#titlebar').html(locationName);
+            $('#wikibox a').attr("href", url);
+                cycleThrough();
+                    $notClicked = 0
+            } //End If
+            
+            else {  
+                resetSlide();
+                
+            } //End Else
+        }) // End Click
+        
+        
+        $('.messagepop').mouseleave(function(){
+            $('.messagepop').slideToggle();
+            resetSlide();
+        }                   
+                                   )// End mouseout
+
+    }); //End document load
+
+</script>
+    
+</head><body>
+    
+
+    <div id = "mapwrapper">
+
+        
+        <div class = "messagepop">
+        <div id = "titlebar"></div> 
+        <div id = "slideshow"> </div>
+        <div id = "wikibox"> <a href = ""> Wikipedia </a> </div>
+    </div>
+        
+        <div id = "darwinmark" class = "redmarker tooltip" name = "Darwin" 
+             title = "<center>Darwin <br> Population: 146,245 (2014)<br> Avg Temp: 74 - 90F. </center>" name = "Darwin" 
+             value = "Darwin,_Northern_Territory"> </div>    
+        <div class = "hiddenpics" ><img src="pics/australia/darwin1.jpg"  /> <img src="pics/australia/darwin2.jpg" /> 
+        <img src="pics/australia/darwin3.jpg" /></div>
+    
+        
+        <div id = "derbymark" class = "redmarker tooltip" 
+             title = "<center> Derby <br> Population: 4,865 (2011) <br> Avg Temp: 71 - 100F</center>" name = "Derby"
+             value = "Derby,_Western_Australia"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/derby1.jpg"  /> <img src="pics/australia/derby2.jpg" />
+        <img src="pics/australia/derby3.jpg" /></div>
+        
+        
+        <div id = "perthmark" class = "redmarker tooltip" 
+             title = "<center> Perth <br> Population: 2,021,200 (2014)<br> Avg Temp: 55 - 76F </center>" name = "Perth"
+             value = "Perth"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/perth1.jpg"  /> <img src="pics/australia/peth2.jpg" /> 
+        <img src="pics/australia/peth3.jpg" /></div>
+        
+        
+        <div id = "albanymark" class = "redmarker tooltip" 
+             title = "<center> Albany <br> Population: 30,656 (2011) <br> Avg Temp: 53 - 67F  </center>" name = "Albany"
+              value = "Albany,_Western_Australia"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/albany1.jpg"  /> <img src="pics/australia/albany2.jpg" /> 
+        <img src="pics/australia/albany3.jpg" /></div>
+        
+        <div id = "adelaidemark" class = "redmarker tooltip" 
+             title = "<center> Adelaide <br> Population: 1,304,631 (2014) <br> Avg Temp: 54 - 72F" name = "Adelaide"
+              value = "Adelaide"> </div>
+         <div class = "hiddenpics" ><img src="pics/australia/adelaide1.jpg"  /> <img src="pics/australia/adelaide2.jpg"  />
+        <img src="pics/australia/adelaide3.jpg"  /></div>
+        
+        
+        <div id = "hamiltonmark" class = "redmarker tooltip" 
+             title = "<center> Hamilton <br> Population: 10,104 (2011) <br> Avg Temp: 46 - 66F" name = "Hamilton" 
+             value = "Hamilton,_Victoria"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/hamilton1.jpg"  /> <img src="pics/australia/hamilton2.jpg"  /> 
+        <img src="pics/australia/hamilton3.jpg"  /></div>
+        
+        
+        <div id = "melbmark" class = "redmarker tooltip" 
+             title = "<center> Melbourne <br> Population: 4,442,919 (2014) <br> Avg Temp: 50 - 68F" name = "Melbourne"
+              value = "Melbourne"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/melb1.jpg"  /> <img src="pics/australia/melb2.jpg"  /> 
+        <img src="pics/australia/melb3.jpeg"  /></div>
+        
+        
+        <div id = "hobartmark" class = "redmarker tooltip" 
+             title = "<center> Hobart <br> Population: 217,973 (2013) <br> Avg Temp: 47 - 62F" name = "Hobart"
+              value = "Hobart"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/hobart1.jpg"  /> <img src="pics/australia/hobart2.jpg" />
+        <img src="pics/australia/hobart3.jpg" /></div>
+        
+        
+        <div id = "canberramark" class = "redmarker tooltip"
+             title = "<center> Canberra <br> Population: 381,488 (2013) <br> Avg Temp: 44 - 67F" name = "Canberra"
+             value = "Canberra"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/can1.jpg"  /> <img src="pics/australia/can2.jpg"  />
+        <img src="pics/australia/can3.jpg"  /></div>
+        
+        <div id = "sydneymark" class = "redmarker tooltip"
+             title = "<center> Sydney <br> Population: 4,840,600 (2014) <br> Avg Temp: 57 - 71" name = "Sydney"
+             value = "Sydney"> </div>
+        <div class = "hiddenpics" ><img src="pics/australia/syd1.jpg"  /> <img src="pics/australia/syd2.jpg"  />
+        <img src="pics/australia/syd3.jpg"  /> </div>
+        
+        <div id = "newcmark" class = "redmarker tooltip"
+             title = "<center> Newcastle <br> Population: 308,308 (2011) <br> Avg Temp: 58 - 71F" name = "Newcastle"
+             value = "Newcastle,_New_South_Wales"> </div>
+        <div class = "hiddenpics"> <img src="pics/australia/mewc1.jpg" /> <img src="pics/australia/newc2.jpg" />
+        <img src="pics/australia/newc3.jpg" /></div>
+        
+        <div id = "brisbanemark" class = "redmarker tooltip"
+             title = "<center> Brisbane <br> Population: 2,274,600 (2014) <br> Avg Temp: 61 - 80F" name = "Brisbane"
+             value = "Brisbane"> </div>
+        <div class = "hiddenpics"> <img src="pics/australia/bris1.jpg" /> <img src="pics/australia/bris2.jpg" />
+        <img src="pics/australia/bris3.jpg" /></div>
+        
+        <div id = "rockymark" class = "redmarker tooltip"
+             title = "<center> Rockhampton <br> Population: 80,345 (2014) <br> Avg Temp: 62 - 83F" name = "Rockhampton"
+             value = "Rockhampton"> </div>
+        <div class = "hiddenpics"> <img src="pics/australia/rock1.jpg" /> <img src="pics/australia/rock2.jpg" />
+        <img src="pics/australia/rock3.jpg" /> </div>
+        
+        <div id = "townmark" class = "redmarker tooltip" 
+             title = "<center> Townsville <br> Population: 178,649 (2014) <br> Avg Temp: 68 - 84F" name = "Townsville"
+             value = "Townsville"> </div>        
+        <div class = "hiddenpics"> <img src="pics/australia/towns1.jpg" /> <img src="pics/australia/towns2.jpg" />
+        <img src="pics/australia/towns3.jpg" /></div>
+        
+        <div id = "aus-map"> </div>
+            <div id = "title"> <p>  Australian Infomap </p>  </div>
+    </div>
+
+
+</body>
+</html>

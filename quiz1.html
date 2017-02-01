@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html><head>
+
+<style type="text/css">
+div.rect1{position:absolute; left:30px; top:40px; width:300px; height:240px;background-color:#ccbbaa;
+margin-bottom: 14px; padding: 6px;}
+</style>
+<script type="text/javascript">
+window.onload= function(){
+
+ var Joke = ["Don't judge a book by its movie.",
+   "I wish life had subtitles!",
+   "Money is the root of all wealth.",
+   "Bad typists of the world untie.",
+   "Brevity is the soul of lingerie.",
+   "I started with nothing and still have most of it left."
+   ]
+ var button= document.getElementById("B1");
+ var show= document.getElementById("show")
+ var msg="";
+ button.onclick=function(){
+     
+/*     for (var i = 0; i < Joke.length; i++) {
+         msg += Joke[i] + "<br>";
+     }
+show.innerHTML = msg
+
+     
+    Joke.forEach(function(str) {
+         msg += str + "<br>";
+     }
+         );
+        show.innerHTML = msg
+                  
+*/
+     
+     var counter = 1;
+     var i = 0;
+     
+        setInterval(function() {
+         msg = counter + '.' + Joke[i];
+         show.innerHTML = msg;
+         counter++;
+         i++;
+         if (i >= Joke.length){
+             i = 0;
+             counter = 1;
+         }
+
+         }
+        , 3000);
+     
+     
+     
+     
+
+     
+  } // end button
+}   // end onload
+
+</script>
+</head><body>
+ <input type="button" value="Button" id="B1">
+<br/><br/>
+<div class="rect1" id="show">
+
+
+</body>
+</html>

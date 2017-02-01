@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html><head>
+<style>
+
+.trigger{cursor:pointer}
+
+.tooltip {display: none; margin-left: 15px;  border: 1px solid #007700; color: white; background-color:black; padding: 8px 8px 6px 8px;
+border-radius: 7px; 
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+
+(function ($)  {
+   $.fn.tool_tip = function(e){
+     var trigger, tt, max_top, full_height;
+     var newPos= new Object();
+   $(this).hover(function(){
+       trigger= $(this);
+       trigger.parent().css({position:'relative'});
+       tt= trigger.next();
+       newPos = trigger.position();
+
+       max_top = parseInt(trigger.offset().top) -  parseInt($(window).scrollTop());
+       full_height = tt.outerHeight() + trigger.outerHeight() -20;
+       
+       if (max_top < full_height){  //show under
+            newPos.top = parseInt(newPos.top + trigger.outerHeight() + 7);
+       }
+       else {      //show above
+           newPos.top = parseInt(newPos.top - (tt.outerHeight() +5));
+       };
+       tt.css({position:'absolute',  //absolute!
+               'top': newPos.top,
+               'left': (newPos.left)
+       });
+       tt.fadeIn(500);
+    },           
+    function(){
+        tt.stop(true).fadeOut(700)
+    })   //end hover1
+
+     .next().hover(function(){  //chained
+        $(this).stop(true).fadeIn(400);
+     }, function(){
+       $(this).stop(true).fadeOut(400)
+    })  //end hover2
+   };  // end .tool_tip()
+} (jQuery));
+
+
+$(document).ready(function(){
+ $('.trigger').tool_tip();
+  
+});   // end .ready()
+
+</script>
+</head><body>
+
+<h3> .tool_tip() a jQuery method</h3>
+
+<div>
+<img src="pics/rose-100.jpg" class= "trigger"> </img>
+  <div class="tooltip"><img src="pics/rose-300.jpg">  <br><b> Rose</b> 
+<a href="http://en.wikipedia.org/wiki/Rose" >Wiki Rose</a>
+  </div>
+
+<p> The spelling using the underscore is intended to distinguish Horn's "tool_tip()" method (in mylib.js) from the large packages such as 
+qTip2, Tooltip, etc. See <a href="http://codegeekz.com/jquery-tooltip-plugins-for-developers/"> CodeGeekz</a>.
+<p>  This jQuery method requires elements in pairs of "trigger" and "tooltip". jQuery's .next() function merely selects whatever element is next and displays it as the tooltip. The trigger and the tooltip elements must be chosen appropriately For instance, in text passages use intertextual tags like the "em" and "span" tags so as not to interrupt paragraph formation.</p>
+
+<p>  Hover over the trigger to expose the tooltip. Hover over the exposed tooltip to keep it in view.<p> 
+
+<p>  Change the values of "margin-left" and "margin-top" (of the tooltip style) 
+ to change the <em class="trigger">
+position of the tooltips</em>  relative to the targets.
+<span class="tooltip"> A positive "margin-left" moves the tooltip to the right <br>
+ and a positive "margin-top" moves the tooltip down.<br> Negative values reverse the direction.  </span>
+    </p>
+
+<p> The tooltip shows above the target if there is room on the screen.  Otherwise it shows under the target. </p>
+
+   
+<img src="pics/climatis-100.jpg"class="trigger"> </img>
+  <div class="tooltip"> <img src="pics/climatis-300.jpg"> <br> <b> Climatis</b> <a href= "http://www.aspca.org/Pet-care/poison-control/Plants/clematis.aspx"> Pet Caution!</a>
+  </div>
+ 
+<img src="pics/gate-100.jpg" class="trigger" />
+  <div class="tooltip"> <img src="pics/gate-300.jpg"> <br> <b> Trellis</b> 
+<a href="http://en.wikipedia.org/wiki/Trellis_(architecture)">Wiki</a>
+  </div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</div>
+</body>
+</html>
